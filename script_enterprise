@@ -4,8 +4,8 @@ folder=`basename "$PWD"`
 
 git init
 git config user.name Laureate
-curl -u 'Laureate' https://github.laureate.net/api/v3/user/repos -d "{\"name\":\"$folder\",\"public\":\"true\"}"
+curl -u 'Laureate' https://github.laureate.net/api/v3/user/repos -d "{\"name\":\"$folder\"}"
 git add . 
-git commit -m 'First commit'
+git commit -m 'first commit'
 git remote add origin git@github.laureate.net:Laureate/$folder.git
 git push -u origin master
