@@ -1,0 +1,10 @@
+#! /usr/bin/env bash
+
+folder=`basename "$PWD"`
+
+curl -u 'jingyi-li:f82ea777288c2ce247254b76d1031f748d9b3929' https://github.laureate.net/api/v3/user/repos -d "{\"name\":\"$folder\"}"
+git init
+git add . 
+git commit -m 'first commit'
+git remote add origin git@github.laureate.net:jingyi-li/$folder.git
+git push -u origin master
