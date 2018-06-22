@@ -1,10 +1,11 @@
 #! /usr/bin/env bash
 
 folder=`basename "$PWD"`
+folder_=`echo ${folder// /_}`
 
-curl -u 'emmajy-li:9c1ded69c6e8358ff3fe3b7058072d533f0f9b19' https://api.github.com/user/repos -d "{\"name\":\"$folder\"}" 
+curl -u 'emmajy-li:9c1ded69c6e8358ff3fe3b7058072d533f0f9b19' https://api.github.com/user/repos -d "{\"name\":\"$folder_\"}" 
 git init
 git add . 
 git commit -m 'First commit'
-git remote add origin https://github.com/emmajy-li/$folder.git
+git remote add origin https://github.com/emmajy-li/$folder_.git
 git push -u origin master
