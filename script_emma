@@ -3,9 +3,32 @@
 folder=`basename "$PWD"`
 folder_=`echo ${folder// /_}`
 
-curl -u 'emmajy-li:9c1ded69c6e8358ff3fe3b7058072d533f0f9b19' https://api.github.com/user/repos -d "{\"name\":\"$folder_\"}" 
+# Create Remote Repository on GitHub.com
+curl -u 'emmajy-li:wwwmipp1919!A' https://api.github.com/user/repos -d "{\"name\":\"$folder_\"}" 
+
+# Generate Local Git Repository
 git init
+
+# Create gitignore file
+touch .gitignore
+echo "
+# Ignore everything
+*
+# But not these files
+!*.R
+!*.py
+!*.sql
+!*.sas
+!*.sh
+!*.bat
+!*.gitignore
+" >> .gitignore
+
+# Ignore files with size greater than 5M
+find . -size +5M | sed 's|^\./||g' | cat >> .gitignore
+
+# Building the bridge
 git add . 
 git commit -m 'first commit'
-git remote add origin https://github.com/emmajy-li/$folder_.git
+git remote add origin git@github.com:emmajy-li/$folder_.git
 git push -u origin master
