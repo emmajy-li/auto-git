@@ -1,5 +1,15 @@
 #! /usr/bin/env bash
 
+# Get Username
+
+echo -n "Please enter your GitHub username [ENTER]: "
+read username
+
+# Get Password
+
+echo -n "Please enter your password [ENTER]: "
+read password
+
 # Get Folder Name
 
 folder=`basename "$PWD"`
@@ -7,11 +17,11 @@ folder_=`echo ${folder// /_}`
 
 # Delete Remote Repository on github.com
 
-curl -u 'emmajy-li:wwwmipp1919!A' -X "DELETE" https://api.github.com/repos/emmajy-li/$folder_
+curl -u '$username:$password' -X "DELETE" https://api.github.com/repos/$username/$folder_
 
 # Create Remote Repository on gitHub.com
 
-curl -u 'emmajy-li:wwwmipp1919!A' https://api.github.com/user/repos -d "{\"name\":\"$folder_\"}" 
+curl -u '$username:$password' https://api.github.com/user/repos -d "{\"name\":\"$folder_\"}" 
 
 # Generate Local Git Repository
 
@@ -51,5 +61,5 @@ echo "# $folder_" >> README.md
 
 git add . 
 git commit -m 'first commit'
-git remote add origin git@github.com:emmajy-li/$folder_.git
+git remote add origin git@github.com:$username/$folder_.git
 git push -u origin master

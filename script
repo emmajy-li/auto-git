@@ -1,13 +1,24 @@
 #! /usr/bin/env bash
 
+# Get Username
+
+echo -n "Please enter your GitHub enterprise username [ENTER]: "
+read username
+
+# Get Password
+
+echo -n "Please enter your GitHub enterprise password [ENTER]: "
+read password
+
+# Get Folder Name
 folder=`basename "$PWD"`
 folder_=`echo ${folder// /_}`
 
-curl -u 'jingyi-li:f82ea777288c2ce247254b76d1031f748d9b3929' https://github.laureate.net/api/v3/user/repos -d "{\"name\":\"$folder_\"}" 
+curl -u '$username:$password' https://github.laureate.net/api/v3/user/repos -d "{\"name\":\"$folder_\"}" 
 git init
 echo "# $folder_ gitignore" >> .gitignore
 echo "# $folder_ " >> README.md
 git add . 
 git commit -m 'first commit'
-git remote add origin git@github.laureate.net:jingyi-li/$folder_.git
+git remote add origin git@github.laureate.net:$username/$folder_.git
 git push -u origin master
