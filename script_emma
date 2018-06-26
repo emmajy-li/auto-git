@@ -20,6 +20,9 @@ echo "
 # Ignore everything
 *
 
+# Now, whitelist anything that's a directory
+!*/
+
 # But not these files
 !*.R
 !*.py
@@ -37,9 +40,7 @@ find . -size +5M | sed 's|^\./||g' | cat >> .gitignore
 
 # Create README.md File
 
-echo "
-# $folder_
-" >> README.md
+echo "# $folder_" >> README.md
 
 # Push to the Origin from Master
 git add . 

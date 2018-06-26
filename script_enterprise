@@ -1,16 +1,18 @@
 #! /usr/bin/env bash
 
 project=`basename $PWD`
-project_underscore=`echo ${project// /_}`
+project_=`echo ${project// /_}`
 folder=`echo $PWD | awk -F "/" '{print$(NF-1)}'`
-folder_underscore=`echo ${folder// /_}`
+folder_=`echo ${folder// /_}`
+note="# SDS_$folder_/_$project_"
+note_=`echo $note | tr -d /`
 
 # Delete Remote Repository on github.com
-curl -u 'Laureate' -X "DELETE" https://github.laureate.net/api/v3/repos/Laureate/$project_underscore
+curl -u 'Laureate' -X "DELETE" https://github.laureate.net/api/v3/repos/Laureate/$project_
 
 # Create Remote Repository on github.laureate.net
 
-curl -u 'Laureate' https://github.laureate.net/api/v3/user/repos -d "{\"name\":\"$project_underscore\"}"
+curl -u 'Laureate' https://github.laureate.net/api/v3/user/repos -d "{\"name\":\"$project_\"}"
 
 # Generate Local Git Repository
 
@@ -20,10 +22,14 @@ git config user.name Laureate
 # Create .gitignore File
 
 echo "
-# SDS_$folder_underscore_$project_underscore gitignore
+# $note_ gitignore
 
 # Ignore everything
 *
+
+# Whitelist anything that's a directory
+!*/
+
 # But not these files
 !*.R
 !*.py
@@ -41,12 +47,10 @@ find . -size +5M | sed 's|^\./||g' | cat >> .gitignore
 
 # Create README.md File 
 
-echo "
-# SDS_$folder_underscore_$project_underscore
-" >> README.md
+echo "$note_" >> README.md
 
 # Push to the Origin from Master
 git add . 
 git commit -m 'first commit'
-git remote add origin git@github.laureate.net:Laureate/$project_underscore.git
+git remote add origin git@github.laureate.net:Laureate/$project_.git
 git push -u origin master
