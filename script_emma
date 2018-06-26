@@ -1,15 +1,20 @@
 #! /usr/bin/env bash
 
+# Get Folder Name
+
 folder=`basename "$PWD"`
 folder_=`echo ${folder// /_}`
 
 # Delete Remote Repository on github.com
+
 curl -u 'emmajy-li:wwwmipp1919!A' -X "DELETE" https://api.github.com/repos/emmajy-li/$folder_
 
 # Create Remote Repository on gitHub.com
+
 curl -u 'emmajy-li:wwwmipp1919!A' https://api.github.com/user/repos -d "{\"name\":\"$folder_\"}" 
 
 # Generate Local Git Repository
+
 git init
 
 # Create .gitignore File
@@ -43,6 +48,7 @@ find . -size +5M | sed 's|^\./||g' | cat >> .gitignore
 echo "# $folder_" >> README.md
 
 # Push to the Origin from Master
+
 git add . 
 git commit -m 'first commit'
 git remote add origin git@github.com:emmajy-li/$folder_.git

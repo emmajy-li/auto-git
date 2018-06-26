@@ -1,13 +1,22 @@
 #! /usr/bin/env bash
 
+# Get Folder Name
+
 project=`basename $PWD`
 project_=`echo ${project// /_}`
+
+# Get Project Name
+
 folder=`echo $PWD | awk -F "/" '{print$(NF-1)}'`
 folder_=`echo ${folder// /_}`
+
+# Get SDS Directory
+
 note="# SDS_$folder_/_$project_"
 note_=`echo $note | tr -d /`
 
-# Delete Remote Repository on github.com
+# Delete Remote Repository on github.laureate.net if existed
+
 curl -u 'Laureate' -X "DELETE" https://github.laureate.net/api/v3/repos/Laureate/$project_
 
 # Create Remote Repository on github.laureate.net
@@ -50,6 +59,7 @@ find . -size +5M | sed 's|^\./||g' | cat >> .gitignore
 echo "$note_" >> README.md
 
 # Push to the Origin from Master
+
 git add . 
 git commit -m 'first commit'
 git remote add origin git@github.laureate.net:Laureate/$project_.git
