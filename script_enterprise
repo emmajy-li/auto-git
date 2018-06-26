@@ -1,13 +1,13 @@
 #! /usr/bin/env bash
 
 project=`basename $PWD`
-project_=`echo ${project// /_}`
+project_underscore=`echo ${project// /_}`
 folder=`echo $PWD | awk -F "/" '{print$(NF-1)}'`
-folder_=`echo ${folder// /_}`
+folder_underscore=`echo ${folder// /_}`
  
 # Create Remote Repository on github.laureate.net
 
-curl -u 'Laureate' https://github.laureate.net/api/v3/user/repos -d "{\"name\":\"$project_\"}"
+curl -u 'Laureate' https://github.laureate.net/api/v3/user/repos -d "{\"name\":\"$project_underscore\"}"
 
 # Generate Local Git Repository
 
@@ -17,7 +17,7 @@ git config user.name Laureate
 # Create .gitignore File
 
 echo "
-# SDS_$folder_\_$project$ gitignore
+# SDS_$folder_underscore_$project_underscore gitignore
 
 # Ignore everything
 *
@@ -39,11 +39,11 @@ find . -size +5M | sed 's|^\./||g' | cat >> .gitignore
 # Create README.md File 
 
 echo "
-# SDS_$folder_\_$project_
+# SDS_$folder_underscore_$project_underscore
 " >> README.md
 
 # Push to the Origin from Master
 git add . 
 git commit -m 'first commit'
-git remote add origin git@github.laureate.net:Laureate/$project_.git
+git remote add origin git@github.laureate.net:Laureate/$project_underscore.git
 git push -u origin master
