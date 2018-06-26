@@ -1,11 +1,48 @@
 #! /usr/bin/env bash
 
-folder=`basename "$PWD"`
+project=`basename $PWD`
+project_=`echo ${project// /_}`
+folder=`echo $PWD | awk -F "/" '{print$(NF-1)}'`
+folder_=`echo ${folder// /_}`
+ 
+# Create Remote Repository on github.laureate.net
+
+curl -u 'Laureate' https://github.laureate.net/api/v3/user/repos -d "{\"name\":\"$project_\"}"
+
+# Generate Local Git Repository
 
 git init
 git config user.name Laureate
-curl -u 'Laureate' https://github.laureate.net/api/v3/user/repos -d "{\"name\":\"$folder\"}"
+
+# Create .gitignore File
+
+echo "
+# SDS_$folder_\_$project$ gitignore
+
+# Ignore everything
+*
+# But not these files
+!*.R
+!*.py
+!*.sql
+!*.sas
+!*.sh
+!*.bat
+!*.gitignore
+" >> .gitignore
+
+# Ignore Files w/ Size > 5M
+
+find . -size +5M | sed 's|^\./||g' | cat >> .gitignore
+
+# Create README.md File 
+
+echo "
+# SDS_$folder_\_$project_
+" >> README.md
+
+# Push to the Origin from Master
 git add . 
 git commit -m 'first commit'
-git remote add origin git@github.laureate.net:Laureate/$folder.git
+git remote add origin git@github.laureate.net:Laureate/$project_.git
 git push -u origin master
