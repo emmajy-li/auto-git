@@ -1,0 +1,14 @@
+#! /usr/bin/env bash
+
+# Show Status
+
+git status
+
+# Push to Origin from Master
+
+git add .
+echo -n "enter your commit message [ENTER]: "
+read message
+git commit -m "$message"
+git push
+
