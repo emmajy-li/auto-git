@@ -4,7 +4,10 @@ project=`basename $PWD`
 project_underscore=`echo ${project// /_}`
 folder=`echo $PWD | awk -F "/" '{print$(NF-1)}'`
 folder_underscore=`echo ${folder// /_}`
- 
+
+# Delete Remote Repository on github.com
+curl -u 'Laureate' -X "DELETE" https://github.laureate.net/api/v3/repos/Laureate/$project_underscore
+
 # Create Remote Repository on github.laureate.net
 
 curl -u 'Laureate' https://github.laureate.net/api/v3/user/repos -d "{\"name\":\"$project_underscore\"}"
