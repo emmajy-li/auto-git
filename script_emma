@@ -25,6 +25,7 @@ echo "
 !*.sh
 !*.bat
 !*.gitignore
+!*.md
 " >> .gitignore
 
 # Ignore files w/ Size > 5M
