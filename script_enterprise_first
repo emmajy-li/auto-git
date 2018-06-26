@@ -1,5 +1,13 @@
 #! /usr/bin/env bash
 
+# Get Username
+
+username=
+
+# Get Token
+
+token=
+
 # Get Folder Name
 
 project=`basename $PWD`
@@ -17,11 +25,11 @@ note_=`echo $note | tr -d /`
 
 # Delete Remote Repository on github.laureate.net if existed
 
-curl -u 'Laureate' -X "DELETE" https://github.laureate.net/api/v3/repos/Laureate/$project_
+# curl -u '$username:$token' -X "DELETE" https://github.laureate.net/api/v3/repos/Laureate/$project_
 
 # Create Remote Repository on github.laureate.net
 
-curl -u 'Laureate' https://github.laureate.net/api/v3/user/repos -d "{\"name\":\"$project_\"}"
+curl -u '$username:$token' https://github.laureate.net/api/v3/orgs/Laureate/repos -d "{\"name\":\"$project_\"}"
 
 # Generate Local Git Repository
 
