@@ -1,7 +1,7 @@
 # Step 1: list the directory
 rm(list = ls())
 
-setwd("C://Users//jli2//Desktop//test_directory")
+setwd("T:/RNA/Baltimore/Student Data Science")
 
 folders <- dir()
 
@@ -13,9 +13,10 @@ for (i in folders) {
   temp <- dir(i, recursive = T, all.files = T)
   if (!any(grepl("\\.git", temp))) {
     setwd(i)
-    system("C://Users//jli2//AppData//Local//Programs//Git//git-bash.exe C://Users//jli2//Desktop//auto-git//script_enterprise", intern = T)
+    system("C://Users//jli2//AppData//Local//Programs//Git//git-bash.exe C://Users//jli2//Desktop//auto-git//script_enterprise_first", intern = 
+T)
   }
-    setwd("C://Users//jli2//Desktop//test_directory") 
+    setwd("T:/RNA/Baltimore/Student Data Science") 
 }
 
 

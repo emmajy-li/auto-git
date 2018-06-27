@@ -34,7 +34,7 @@ curl -u '$username:$token' https://github.laureate.net/api/v3/orgs/Laureate/repo
 # Generate Local Git Repository
 
 git init
-git config user.name Laureate
+git config user.name "jingyi-li"
 
 # Create .gitignore File
 
