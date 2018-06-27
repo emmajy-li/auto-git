@@ -1,5 +1,10 @@
 #! /usr/bin/env bash
 
+# Three major things this code accomplished:y
+# 	1. create a remote repository using the project's name
+#	2. Search for all the files that satisfy the size and file extension criteria
+# 	3. Push files to remote git repo from local git repo
+
 # Get Username
 
 username=""
