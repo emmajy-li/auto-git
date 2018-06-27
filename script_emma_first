@@ -29,8 +29,8 @@ git init
 
 # Create .gitignore File
 
-echo "
-# $folder_ gitignore
+echo 
+"# $folder_ gitignore
 
 # Ignore everything
 *
@@ -46,8 +46,7 @@ echo "
 !*.sh
 !*.bat
 !*.gitignore
-!*.md
-" >> .gitignore
+!*.md" >> .gitignore
 
 # Ignore files w/ Size > 5M
 

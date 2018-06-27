@@ -2,7 +2,7 @@
 
 # Get Username
 
-username="jingyi-li"
+username=""
 
 # Get Token
 
@@ -38,8 +38,8 @@ git config user.name "jingyi-li"
 
 # Create .gitignore File
 
-echo "
-# $note_ gitignore
+echo 
+"$note_ gitignore
 
 # Ignore everything
 *
@@ -55,8 +55,7 @@ echo "
 !*.sh
 !*.bat
 !*.gitignore
-!*.md
-" >> .gitignore
+!*.md" >> .gitignore
 
 # Ignore Files w/ Size > 5M
 
